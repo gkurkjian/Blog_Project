@@ -19,6 +19,8 @@
   }
 }
 
+@apply bg-white text-gray-900; 
+
 body {
   background: var(--background);
   color: var(--foreground);
