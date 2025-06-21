@@ -11,7 +11,7 @@ export default function Navigation() {
         <div className="flex justify-between items-center h-16">
           {/* Logo / Brand */}
           <Link href="/" className="text-xl font-bold text-blue-600">
-            MyBlog
+            Postly
           </Link>
 
           {/* Desktop Links */}
