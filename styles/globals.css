@@ -19,7 +19,7 @@
   }
 }
 
-@apply bg-white text-gray-900; 
+@apply bg-white text-gray-400; 
 
 body {
   background: var(--background);
