@@ -2,7 +2,7 @@
 // and passes it as props to the BlogPage component.
 
 import { fetchBlog } from '../utils/fetchBlog';
-import Link from 'next/link';
+import BlogCard from '@/components/BlogCard';
 
 export default function BlogPage({ blogs }) {
   return (
@@ -14,20 +14,15 @@ export default function BlogPage({ blogs }) {
       ) : (
         <ul className="space-y-4">
           {blogs.map((blog) => (
-            <li key={blog.id} className="p-4 border rounded-md shadow-sm bg-white">
-              <Link href={`/blog/${blog.id}`}>
-                <h2 className="text-xl font-semibold text-blue-600 hover:underline">
-                  {blog.title}
-                </h2>
-              </Link>
-              <p className="text-gray-600 mt-2">{blog.body}</p>
+            <li key={blog.id}>
+              <BlogCard blog={blog} />
             </li>
           ))}
         </ul>
       )}
     </div>
   );
-};
+}
 
 export async function getStaticProps() {
   const blogs = await fetchBlog();
@@ -36,4 +31,4 @@ export async function getStaticProps() {
       blogs: blogs || [],
     },
   };
-};
+}
