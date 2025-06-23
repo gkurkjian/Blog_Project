@@ -1,34 +1,25 @@
-// This function fetches the blog data at build time
-// and passes it as props to the BlogPage component.
-
-import { fetchBlog } from '../utils/fetchBlog';
-import BlogCard from '@/components/BlogCard';
+// pages/blog/index.js
+import { fetchBlog } from "../utils/fetchBlog";
+import BlogCard from "@/components/BlogCard";
 
 export default function BlogPage({ blogs }) {
   return (
-    <div className="p-6 max-w-4xl mx-auto">
+    <div className="p-6 max-w-6xl mx-auto">
       <h1 className="text-3xl font-bold mb-6">Blog Posts</h1>
-
-      {blogs.length === 0 ? (
-        <p className="text-gray-500">No blogs found.</p>
-      ) : (
-        <ul className="space-y-4">
-          {blogs.map((blog) => (
-            <li key={blog.id}>
-              <BlogCard blog={blog} />
-            </li>
-          ))}
-        </ul>
-      )}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {blogs.map((blog, index) => (
+          <BlogCard key={blog.id} blog={blog} priority={ index === 0 } />
+        ))}
+      </div>
     </div>
   );
 }
 
 export async function getStaticProps() {
-  const blogs = await fetchBlog();
+  const blogs = await fetchBlog(5);
   return {
     props: {
-      blogs: blogs || [],
+      blogs,
     },
   };
 }
